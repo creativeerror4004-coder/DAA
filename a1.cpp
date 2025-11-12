@@ -1,15 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
-// Define total number of orders
-#define NUM_ORDERS 1000000  // You can use smaller values like 10000 for testing
 
-// --------------------- STRUCTURE FOR ORDER---------------------
+#define NUM_ORDERS 1000000  
+
+
 struct Order {
     string order_id;
     time_t timestamp;
 };
 
-// --------------------- RANDOM ORDER GENERATION ---------------------
+
 void generate_sample_orders(vector<Order> &orders, int n) {
     tm base_time = {};
     base_time.tm_year = 2025 - 1900;
@@ -23,7 +23,7 @@ void generate_sample_orders(vector<Order> &orders, int n) {
 
 
     for (int i = 0; i < n; i++) {
-        int random_minutes = rand() % 100000; // up to ~70 days
+        int random_minutes = rand() % 100000;
         Order ord;
         ord.timestamp = base + (random_minutes * 60);
         ord.order_id = "ORD" + to_string(i + 1);
@@ -32,7 +32,6 @@ void generate_sample_orders(vector<Order> &orders, int n) {
 }
 
 
-// --------------------- MERGE FUNCTION ---------------------
 void merge(vector<Order> &orders, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
@@ -61,7 +60,6 @@ void merge(vector<Order> &orders, int left, int mid, int right) {
 }
 
 
-// --------------------- MERGE SORT ---------------------
 void merge_sort(vector<Order> &orders, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
@@ -72,7 +70,6 @@ void merge_sort(vector<Order> &orders, int left, int right) {
 }
 
 
-// --------------------- PRINT FIRST N ORDERS ---------------------
 void print_first_n_orders(const vector<Order> &orders, int n) {
     cout << "\nFirst " << n << " Sorted Orders:\n";
     char buffer[30];
@@ -85,7 +82,6 @@ void print_first_n_orders(const vector<Order> &orders, int n) {
 }
 
 
-// --------------------- MAIN FUNCTION ---------------------
 int main() {
     vector<Order> orders;
     orders.reserve(NUM_ORDERS);
@@ -115,3 +111,4 @@ int main() {
 
     return 0;
 }
+
