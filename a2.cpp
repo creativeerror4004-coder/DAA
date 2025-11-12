@@ -4,7 +4,6 @@ using namespace std;
 using namespace std::chrono;
 
 
-// --------------------- MOVIE STRUCTURE ---------------------
 struct Movie {
     string title;
     float rating;
@@ -21,7 +20,7 @@ struct Movie {
 };
 
 
-// --------------------- QUICKSORT IMPLEMENTATION ---------------------
+
 void quickSort(vector<Movie> &movies, int low, int high, bool (*compare)(const Movie &, const Movie &)) {
     if (low < high) {
         int pivotIndex = low;
@@ -41,7 +40,6 @@ void quickSort(vector<Movie> &movies, int low, int high, bool (*compare)(const M
 }
 
 
-// --------------------- COMPARATOR FUNCTIONS ---------------------
 bool compareByRating(const Movie &a, const Movie &b) {
     return a.rating < b.rating;
 }
@@ -57,27 +55,25 @@ bool compareByPopularity(const Movie &a, const Movie &b) {
 }
 
 
-// --------------------- RANDOM MOVIE GENERATOR ---------------------
 vector<Movie> generateMovies(int n) {
     vector<Movie> movies;
     movies.reserve(n);
     for (int i = 0; i < n; i++) {
         Movie m;
         m.title = "Movie " + to_string(i + 1);
-        m.rating = static_cast<float>(rand() % 90 + 10) / 10.0f;   // Ratings between 1.0 and 10.0
-        m.release_year = rand() % 45 + 1980;                       // 1980 to 2024
-        m.popularity = rand() % 1000000 + 1000;                    // 1,000 to 1,000,000
+        m.rating = static_cast<float>(rand() % 90 + 10) / 10.0f; 
+        m.release_year = rand() % 45 + 1980;                       
+        m.popularity = rand() % 1000000 + 1000;                   
         movies.push_back(m);
     }
     return movies;
 }
 
 
-// --------------------- MAIN FUNCTION ---------------------
 int main() {
     srand(time(0));
 
-    int num_movies = 1000000; // Use 1,000,000 for stress testing
+    int num_movies = 1000000; 
     cout << "Generating " << num_movies << " random movies..." << endl;
 
 
@@ -117,7 +113,6 @@ int main() {
          << diff.count() << " seconds." << endl;
 
 
-    // Display top 10 movies in descending order (best-ranked first)
     cout << "\nTop 10 Movies by " << sort_by << ":" << endl;
     for (int i = num_movies - 1; i >= num_movies - 10; --i)
         movies[i].display();
@@ -125,3 +120,4 @@ int main() {
 
     return 0;
 }
+
